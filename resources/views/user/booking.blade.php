@@ -92,17 +92,17 @@
                                                     <div class=" row align-items-center">
                                                         <div class="form-group col-sm-6">
                                                             <label for="exampleInputDisabled1">Nama Lengkap</label>
-                                                            <input type="text" class="form-control" id="exampleInputDisabled1" value="">
+                                                            <input type="text" name="nama" value="{{$user->nama}}" class="form-control" id="exampleInputDisabled1" value="">
                                                         </div>
                                                         <div class="form-group col-sm-6">
                                                             <label for="email">Email</label>
-                                                            <input type="email" class="form-control" id="email" value="">
+                                                            <input type="email" value="{{$user->email}}" class="form-control" id="email" value="">
                                                         </div>                                                    
                                                     </div>
                                                     <div class=" row align-items-center">
                                                         <div class="form-group col-sm-6">
                                                             <label for="exampleInputDisabled1">No HP</label>
-                                                            <input type="text" class="form-control" id="exampleInputDisabled1" value="">
+                                                            <input type="text" value="{{$user->no_hp}}" class="form-control" id="exampleInputDisabled1" value="">
                                                         </div> 
                                                         <div class="form-group col-sm-6">
                                                             <label for="exampleInputDisabled1">Total Bayar</label>

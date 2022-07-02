@@ -29,25 +29,26 @@
                         <div class="sign-in-from " style="margin-top: 6%;">
                             <h1 class="mb-0">Register</h1>
                             <p>Silahkan Registrasi</p>
-                            <form class="mt-4">
+                            <form class="mt-4" action="{{url('register')}}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Nama">
+                                    <input type="text" name="nama" class="form-control mb-0" id="exampleInputEmail1" placeholder="Nama">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">Email</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail2" placeholder="Email">
+                                    <input type="email" name="email" class="form-control mb-0" id="exampleInputEmail2" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">No HP</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail2" placeholder="No HP">
+                                    <input type="text" name="no_hp" class="form-control mb-0" id="exampleInputEmail2" placeholder="No HP">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" name="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="d-inline-block w-100">   
-                                    <p>Sudah punya akun ? <a href="{{url('user/login')}}">Login</a></p>                                 
+                                    <p>Sudah punya akun ? <a href="{{url('login')}}">Login</a></p>                                 
                                     <button type="submit" class="btn btn-primary float-right">Sign Up</button>
                                 </div>
                             </form>

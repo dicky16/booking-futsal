@@ -29,17 +29,18 @@
                         <div class="sign-in-from " style="margin-top: 15%;">
                             <h1 class="mb-0">Login</h1>
                             <p>Masukan Nama Dan Password.</p>
-                            <form class="mt-4">
+                            <form class="mt-4" action="{{url('login')}}" method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nama</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Nama">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="email" name="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" name="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="d-inline-block w-100">  
-                                    <p>Belum punya akun?<a href="{{url('user/register')}}">Register</a></p>                                  
+                                    <p>Belum punya akun?<a href="{{url('register')}}">Register</a></p>                                  
                                     <button type="submit" class="btn btn-primary float-right">Login</button>
                                 </div>
                             </form>
@@ -82,5 +83,11 @@
       <script src="{{asset('temauser/js/chart-custom.js')}}"></script>
       <!-- Custom JavaScript -->
       <script src="{{asset('temauser/js/custom.js')}}"></script>
+
+      @if(session('login'))
+        <script>
+            alert('{{session('login')}}')
+        </script>
+      @endif
    </body>
 </html>

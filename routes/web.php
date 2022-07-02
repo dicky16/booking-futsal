@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
+Route::get('login', [UserController::class, 'index']);
+Route::get('register', function() {
+    return view('register');
 });
 
 Route::group(['prefix' => 'admin'], function()
@@ -41,13 +50,11 @@ Route::group(['prefix' => 'user'], function()
         return view('user.login');
     });
 
-    Route::get('/index', function () {
+    Route::get('/', function () {
         return view('user.index');
     });
 
-    Route::get('/booking', function () {
-        return view('user.booking');
-    });
+    Route::resource("/booking", BookingController::class);
 
     Route::get('/profil', function () {
         return view('user.profil');
