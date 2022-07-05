@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBerandaController;
+use App\Http\Controllers\Admin\AdminLapanganController;
+use App\Http\Controllers\Admin\AdminPesananController;
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\BookingController;
@@ -22,26 +26,18 @@ Route::get('/', function () {
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::get('login', [UserController::class, 'index']);
-Route::get('register', function() {
+Route::get('register', function () {
     return view('register');
 });
 
-Route::group(['prefix' => 'admin'], function()
-{
-    Route::get('/login', function () {
-        return view('admin.login');
-    });
-
-    Route::get('/booking', function () {
-        return view('admin.booking');
-    });
-
-
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', [AdminBerandaController::class, 'index']);
+    Route::get('/pesanan', [AdminPesananController::class, 'index']);
+    Route::resource('lapangan', AdminLapanganController::class);
 });
 
 
-Route::group(['prefix' => 'user'], function()
-{
+Route::group(['prefix' => 'user'], function () {
     Route::get('/register', function () {
         return view('user.register');
     });
@@ -54,14 +50,14 @@ Route::group(['prefix' => 'user'], function()
         return view('user.index');
     });
 
-    Route::resource("/booking", BookingController::class);
+    Route::group(["middleware" => "login"], function () {
+        Route::resource("/booking", BookingController::class);
 
+        Route::get('pesanan', [PesananController::class, 'index']);
+        Route::get('pesanan/{id}', [PesananController::class, 'show']);
+    });
     Route::get('/profil', function () {
         return view('user.profil');
-    });
-
-    Route::get('/pesanan', function () {
-        return view('user.pesanan');
     });
 
     Route::get('/tambahbooking', function () {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BookingController extends Controller
+class AdminLapanganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        // $id = session('id');
-        // $user = DB::table('users')->where('id', $id)->get();
-        // $user = $user[0];
-        $jams = DB::table('jam')->get();
-        $lapangans = DB::table('lapangan')->get();
-        return view('user.booking.booking', compact('jams', 'lapangans'));
+        $data = DB::table('lapangan')->get();
+        return view('admin.lapangan.lapangan', compact('data'));
     }
 
     /**
@@ -30,9 +26,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        // $jams = DB::table('jam')->get();
-        // $lapangans = DB::table('lapangan')->get();
-        // return view('user.booking.tambah_booking', compact('jams', 'lapangans'));
+        return view('admin.lapangan.tambah');
     }
 
     /**
@@ -46,11 +40,16 @@ class BookingController extends Controller
         $data = $request->all();
         unset($data["_token"]);
         try {
-            DB::table('bookings')->insert(array_merge($data, ["id_user" => session('id')]));
-            return redirect('user/pesanan')->with('success', 'berhasil tambah pesanan');
+            $file = $request->file('cover');
+            $coverName = time().".".$file->extension();
+            $destination = "assets/images/lapangan";
+            $file->move($destination, $coverName);
+            DB::table('lapangan')->insert(array_merge($data, ["cover" => $destination."/".$coverName]));
+            return redirect()->route('lapangan.index')->with('success', 'Berhasil tambah lapangan');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
+        dd($data);
     }
 
     /**
@@ -61,10 +60,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $jams = DB::table('jam')->get();
-        $lapangan = DB::table('lapangan')->where('id', $id)->get();
-        $lapangan = $lapangan[0];
-        return view('user.booking.tambah_booking', compact('jams', 'lapangan'));
+        //
     }
 
     /**
@@ -75,9 +71,7 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        // $booking = DB::table('bookings')->where('id', $id)->get();
-        // $booking = $booking[0];
-        // return view('user.booking.detail', compact('booking'));
+        //
     }
 
     /**

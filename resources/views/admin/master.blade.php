@@ -47,7 +47,8 @@
                <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                      <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Apps</span></li>
-                     <li class="active"><a href="{{url('user/booking')}}" class="iq-waves-effect" aria-expanded="false"><i class="ri-pages-line"></i><span>Booking</span></a></li>
+                     <li class=""><a href="{{url('admin/lapangan')}}" class="iq-waves-effect" aria-expanded="false"><i class="ri-pages-line"></i><span>Lapangan</span></a></li>
+                     <li class=""><a href="{{url('admin/pesanan')}}" class="iq-waves-effect" aria-expanded="false"><i class="ri-pages-line"></i><span>Pesanan</span></a></li>
                   </ul>
                </nav>
                <div class="p-3"></div>
@@ -115,58 +116,7 @@
             </div>
          </div>
          <!-- TOP Nav Bar END -->
-         <!-- Page Content  -->
-         <div id="content-page" class="content-page">
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12">
-                     <div class="iq-card">
-                        <div class="iq-card-header d-flex justify-content-between">
-                           <div class="iq-header-title">
-                              <h4 class="card-title">Booking Lapangan</h4>
-                           </div>
-                        </div>
-                        <div class="iq-card-body">
-                              <table class="table" id="table_id" style="display: inline-table;">
-                                 <thead >
-                                    <tr>
-                                       <th>No</th>
-                                       <th>Nama</th>
-                                       <th>Tanggal</th>
-                                       <th>Jam Mulai</th>
-                                       <th>Jam Selesai</th>
-                                       <th>Total Bayar</th>
-                                       <th>Status</th>
-                                       <th class="text-center">Aksi</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-
-                                    <tr>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td class="" >
-                                          <div class="list-user-action text-center">
-                                             <a class="iq-bg-primary text-decoration-none" href="/mahasiswa/kegiatan/detail"><i class="ri-eye-line"></i></a>
-                                             <a class="iq-bg-primary text-decoration-none" href="/mahasiswa/kegiatan/edit"><i class="ri-pencil-line"></i></a>
-                                          </div>
-                                       </td>
-                                    </tr>
-
-                                 </tbody>
-                              </table>
-                        </div>
-                     </div>
-                  </div>               
-               </div>      
-            </div>              
-            
-         </div>
+         @yield('content')
 
       <!-- Wrapper END -->
       
@@ -231,7 +181,8 @@
       <script async src="{{asset('temaadmin/js/chart-custom.js')}}"></script>
       <!-- Custom JavaScript -->
       <script src="{{asset('temaadmin/js/custom.js')}}"></script>
-      
+      @stack('scripts')
+      <script src="https://use.fontawesome.com/e914f8fea1.js"></script>
       <script>
          $("#autoalert").fadeTo(2000, 500).slideUp(500, function(){
             $("#autoalert").slideUp(500);

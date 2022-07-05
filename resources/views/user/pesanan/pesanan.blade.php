@@ -104,28 +104,31 @@
                                           <th>Nama</th>
                                           <th>Tanggal</th>
                                           <th>Jam Mulai</th>
-                                          <th>Jam Selesai</th>
+                                          <th>Durasi</th>
                                           <th>Total Bayar</th>
                                           <th>Status</th>
                                           <th class="text-center">Aksi</th>
                                        </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($pesanans as $pesanan)
+                                        <?php $no = 1; ?>
                                        <tr>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
+                                          <td>{{$no}}</td>
+                                          <td>{{$pesanan->nama_lapangan}}</td>
+                                          <td>{{$pesanan->tanggal}}</td>
+                                          <td>{{$pesanan->jam}}</td>
+                                          <td>{{$pesanan->durasi}}</td>
+                                          <td>{{$pesanan->total_bayar}}</td>
+                                          <td>{{$pesanan->status_bayar}}</td>
                                           <td class="" >
                                              <div class="list-user-action text-center">
-                                                <a class="bg-primary text-decoration-none" href="/mahasiswa/kegiatan/detail"><i class="ri-eye-line"></i></a>
+                                                <a class="bg-primary text-decoration-none" href="{{url('user/pesanan')}}/{{$pesanan->id}}"><i class="ri-eye-line"></i></a>
                                              </div>
                                           </td>
                                        </tr>
-
+                                       <?php $no++; ?>
+                                        @endforeach
                                     </tbody>
                                  </table>
                            </div>
