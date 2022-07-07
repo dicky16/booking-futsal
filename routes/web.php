@@ -33,6 +33,8 @@ Route::get('register', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [AdminBerandaController::class, 'index']);
     Route::get('/pesanan', [AdminPesananController::class, 'index']);
+    Route::get('/pesanan/{id}/edit', [AdminPesananController::class, 'edit']);
+    Route::post('/pesanan/update/{id}', [AdminPesananController::class, 'update']);
     Route::resource('lapangan', AdminLapanganController::class);
 });
 
@@ -55,6 +57,7 @@ Route::group(['prefix' => 'user'], function () {
 
         Route::get('pesanan', [PesananController::class, 'index']);
         Route::get('pesanan/{id}', [PesananController::class, 'show']);
+        Route::post('pesanan', [PesananController::class, 'store']);
     });
     Route::get('/profil', function () {
         return view('user.profil');

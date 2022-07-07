@@ -14,7 +14,7 @@
 
 <section class="message section container">
     <h2>Detail Booking</h2>
-    <form action="{{route('booking.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{url('user/pesanan')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class=" row align-items-center">
             <div class="form-group col-sm-12">
@@ -35,15 +35,24 @@
             </div>
             <div class="form-group col-sm-12">
                 <label for="exampleInputDisabled1">Total Bayar</label>
+                <input type="hidden" value="{{$pesanan->id}}" name="id_booking">
                 <input type="text" name="total_bayar" class="form-control" id="totalBayar" value="{{$pesanan->total_bayar}}" readonly>
             </div>
+            @if(count($pembayaran) > 0)
+            <div class="form-group col-sm-12">
+                <label for="exampleInputDisabled1">Bukti Transfer</label>
+                <img src="{{url('')}}/{{$pembayaran[0]->bukti_tf}}" alt="" srcset="" width="200" height="200">
+            </div>
+            @else
             <div class="form-group col-sm-12">
                 <label for="exampleInputDisabled1">Upload Bukti Bayar</label>
                 <input type="file" name="bukti_bayar" class="form-control">
             </div>
+            @endif
         </div>
-
+        @if(count($pembayaran) == 0)
         <button type="submit" class="btn btn-primary">Submit</button>
+        @endif
     </form>
 </section>
 @endsection

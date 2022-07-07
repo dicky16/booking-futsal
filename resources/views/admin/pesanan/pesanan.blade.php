@@ -15,11 +15,11 @@
                         <table class="table" id="table_id" style="display: inline-table;">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>ID Booking</th>
                                     <th>Nama</th>
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
-                                    <th>Jam Selesai</th>
+                                    <th>Durasi</th>
                                     <th>Total Bayar</th>
                                     <th>Status</th>
                                     <th class="text-center">Aksi</th>
@@ -27,22 +27,23 @@
                             </thead>
                             <tbody>
 
+                                @foreach($pesanans as $pesanan)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$pesanan->id}}</td>
+                                    <td>{{$pesanan->nama}}</td>
+                                    <td>{{$pesanan->tanggal}}</td>
+                                    <td>{{$pesanan->jam}}</td>
+                                    <td>{{$pesanan->durasi}}</td>
+                                    <td>{{$pesanan->total_bayar}}</td>
+                                    <td>{{$pesanan->status_bayar}}</td>
                                     <td class="">
                                         <div class="list-user-action text-center">
                                             <a class="iq-bg-primary text-decoration-none" href="/mahasiswa/kegiatan/detail"><i class="ri-eye-line"></i></a>
-                                            <a class="iq-bg-primary text-decoration-none" href="/mahasiswa/kegiatan/edit"><i class="ri-pencil-line"></i></a>
+                                            <a class="iq-bg-primary text-decoration-none" href="{{url('admin/pesanan')}}/{{$pesanan->id}}/edit"><i class="ri-pencil-line"></i></a>
                                         </div>
                                     </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
